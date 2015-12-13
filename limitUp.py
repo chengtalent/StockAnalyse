@@ -10,6 +10,7 @@ import os
 
 #涨停后第二天继续上涨的概率
 
+
 class StockInfo:
     sid = 0
     limitUp = 0
