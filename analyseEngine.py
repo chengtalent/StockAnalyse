@@ -1,17 +1,16 @@
 __author__ = 'chengsilei'
 
-
 import sys
 import time
-import db
-import buySignal
-import sellSignal
-import dataCaculate
-import utility
+from datetime import date
+
+from common import db, utility
+from turtle import dataCaculate, sellSignal, buySignal
 
 
 def engine_start():
-    today = '2015-12-11'
+    today = '2015-12-30'
+    print date.today()
 
     #db.writeDBFromStockHistDatasForUpdate(today)
     db.writeDBFromStockHistDatasForUpdateCurrentDay()
@@ -52,8 +51,6 @@ def main():
     daily_run_once_after_over()
 
     #realtime_monitor()
-
-
 
 if __name__ == '__main__':
     sys.exit(main())

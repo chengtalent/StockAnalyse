@@ -3,7 +3,7 @@ __author__ = 'chengsilei'
 
 
 import sys
-import db
+from common import db
 
 # m25 begin from 25th
 def calMList(data):

@@ -1,4 +1,5 @@
 from __future__ import division
+
 from common.StockInfo import StockInfo
 
 __author__ = 'chengsilei'
@@ -8,8 +9,8 @@ import sys
 import os
 import time
 from datetime import timedelta, date
-import db
-import utility
+from common import db, utility
+
 
 # bug signal for the price go thrown the 20 days max
 

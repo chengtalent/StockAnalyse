@@ -1,10 +1,10 @@
 __author__ = 'chengsilei'
 
+import sqlite3
 import sys
 import time
-import sqlite3
+
 import tushare as ts
-import utility
 from sqlalchemy import create_engine
 
 

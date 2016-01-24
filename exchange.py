@@ -2,9 +2,7 @@ from __future__ import division
 __author__ = 'chengsilei'
 
 import sys
-import db
-import utility
-import tushare as ts
+from common import db, utility
 
 positions = 200000.0
 
@@ -41,9 +39,9 @@ def sellStockExecute(code, price, amt):
 
 def main():
 
-    #buyStockHint('600196')
+    buyStockHint('600196')
 
-    buyStockExecute('600284', 15.5, 500)
+    #buyStockExecute('600284', 15.5, 500)
 
     #sellStockExecute('002312', 33.07, 100)
 
