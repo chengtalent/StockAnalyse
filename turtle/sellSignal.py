@@ -9,7 +9,7 @@ import sys
 import os
 import time
 from datetime import timedelta, date
-from common import db, utility
+from common import dao, utility
 
 
 # bug signal for the price go thrown the 20 days max
@@ -57,14 +57,14 @@ def getAllSellSignalStocksToday():
 
 
 def updateSellSignalStocks():
-    stockList = db.getCandidateFromBreakThoughtStocks()
+    stockList = dao.getCandidateFromBreakThoughtStocks()
 
     todayStr = utility.getLastDay()
 
     count = 0
     for stock in stockList:
 
-        data = db.get_hist_data(stock)
+        data = dao.get_hist_data(stock)
         if data[len(data)-1][1] != todayStr:
             continue
 
@@ -75,7 +75,7 @@ def updateSellSignalStocks():
                 min = array[i][4]
 
         if len(array) > 8 and array[len(array)-1][4] < min:
-            db.update_break_through_for_sell(stock, array[len(array)-1][4], todayStr)
+            dao.update_break_through_for_sell(stock, array[len(array) - 1][4], todayStr)
             count += 1
 
     print 'sell ' + str(count) + ' break down stocks'

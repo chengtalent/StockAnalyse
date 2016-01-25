@@ -3,7 +3,7 @@ __author__ = 'chengsilei'
 
 
 import sys
-from common import db
+from common import dao
 
 # m25 begin from 25th
 def calMList(data):
@@ -66,7 +66,7 @@ def calAnalyseDataForSeveralDays(data):
         if i >= 299:
             m_300 = m300[i-299]
 
-        db.add_stock_analyse_data(data[i][0], date, m_25, m_300, n)
+        dao.add_stock_analyse_data(data[i][0], date, m_25, m_300, n)
         i += 1
 
 
@@ -82,14 +82,14 @@ def calAnalyseDataForOneDay(data, analysData):
     m25 = (preData[0][2] * 24 + data[len(data)-1][4]) / 25
     m300 = (preData[0][3] * 299 + data[len(data)-1][4]) / 300
 
-    db.add_stock_analyse_data(data[0][0], data[len(data)-1][1], m25, m300, n)
+    dao.add_stock_analyse_data(data[0][0], data[len(data) - 1][1], m25, m300, n)
 
 
 def calAnalyseDataInit():
-    stockList = db.getCandidateFromDB()
+    stockList = dao.getCandidateFromDB()
 
     for stock in stockList:
-        data = db.get_hist_data(stock)
+        data = dao.get_hist_data(stock)
         if len(data) <= 300:
             continue
 
@@ -97,14 +97,14 @@ def calAnalyseDataInit():
 
 
 def calAnalyseDataForUpdate():
-    stockList = db.getCandidateFromDB()
+    stockList = dao.getCandidateFromDB()
 
     for stock in stockList:
-        data = db.get_hist_data(stock)
+        data = dao.get_hist_data(stock)
         if len(data) <= 300:
             continue
 
-        analysData = db.get_stock_analyse_data(stock)
+        analysData = dao.get_stock_analyse_data(stock)
         if len(analysData) == 0:
             calAnalyseDataForSeveralDays(data)
         else:

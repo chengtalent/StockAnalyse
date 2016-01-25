@@ -2,13 +2,13 @@ from __future__ import division
 __author__ = 'chengsilei'
 
 import sys
-from common import db, utility
+from common import dao, utility
 
 positions = 200000.0
 
 def buyStockHint(code):
 
-    analyseData = db.get_stock_analyse_data(code)
+    analyseData = dao.get_stock_analyse_data(code)
     N = analyseData[len(analyseData)-1][4]
     unit = positions * 0.01 / N
 
@@ -20,7 +20,7 @@ def buyStockHint(code):
 
 
 def buyStockExecute(code, price, amt):
-    analyseData = db.get_stock_analyse_data(code)
+    analyseData = dao.get_stock_analyse_data(code)
     N = analyseData[len(analyseData)-1][4]
     unit = positions * 0.01 / N
 
@@ -28,12 +28,12 @@ def buyStockExecute(code, price, amt):
     buyNextAmt = unit / buyNextPrice
     stopPrice = price - N * 2
 
-    db.add_new_exchange_log(code, price, amt, 1, buyNextPrice, buyNextAmt, stopPrice)
+    dao.add_new_exchange_log(code, price, amt, 1, buyNextPrice, buyNextAmt, stopPrice)
     print 'add the buy execute log'
 
 
 def sellStockExecute(code, price, amt):
-    db.add_new_exchange_log(code, price, amt, -1)
+    dao.add_new_exchange_log(code, price, amt, -1)
     print 'add the sell execute log'
 
 

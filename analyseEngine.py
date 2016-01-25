@@ -4,7 +4,7 @@ import sys
 import time
 from datetime import date
 
-from common import db, utility
+from common import dao, utility
 from turtle import dataCaculate, sellSignal, buySignal
 
 
@@ -13,7 +13,7 @@ def engine_start():
     print date.today()
 
     #db.writeDBFromStockHistDatasForUpdate(today)
-    db.writeDBFromStockHistDatasForUpdateCurrentDay()
+    dao.writeDBFromStockHistDatasForUpdateCurrentDay()
     dataCaculate.calAnalyseDataForUpdate()
     print 'engine started'
 
@@ -26,7 +26,7 @@ def daily_run_once_after_over():
 
 
 def realtime_monitor():
-    stocks = db.getCurrentlyHoldStocks()
+    stocks = dao.getCurrentlyHoldStocks()
     if len(stocks) == 0:
         return
 
